@@ -70,10 +70,9 @@ function handleRequest(req, res) {
     } else if (parsedUrl.pathname === '/users' && req.method === 'GET') {
       let user = parsedUrl.query.username;
       let path = __dirname + '/contacts/' + user + '.json';
-      let rootFolder = __dirname + '/contacts/';
 
       if (user) {
-        fs.readFile(rootFolder + path, (err, content) => {
+        fs.readFile(path, (err, content) => {
           if (err) return console.log(err);
           let data = JSON.parse(content.toString());
           res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -89,6 +88,6 @@ function handleRequest(req, res) {
   });
 }
 
-server.listen(5000, 'localhost', () => {
-  console.log(`Server listning to port 5000!`);
+server.listen(5002, 'localhost', () => {
+  console.log(`Server listning to port 5002!`);
 });
